@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>95% Fail Game</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  text-align: center;
+  background: linear-gradient(45deg,#ff0057,#3b00ff);
+  color: #fff;
+}
+
+.title {
+  font-size: 30px;
+  background: #000;
+  padding: 12px;
+  color: #00ffcc;
+  font-weight: bold;
+}
+
+.question {
+  font-size: 70px;
+  margin-top: 30px;
+}
+
+.answer {
+  font-size: 80px;
+  color: yellow;
+}
+
+.text {
+  font-size: 26px;
+  margin-top: 10px;
+}
+
+.subscribe {
+  font-size: 24px;
+  margin-top: 15px;
+  color: #ffea00;
+  font-weight: bold;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0.4; }
+}
+
+.timer {
+  font-size: 40px;
+  background: white;
+  color: black;
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="title">
+৯৫% মানুষ ভুল করে 😱<br>
+তুমি কি পারবে সঠিক উত্তর দিতে? 🤯
+</div>
+
+<div class="question" id="q">Loading...</div>
+<div class="answer" id="a"></div>
+
+<div class="text">
+এটা কি ঠিক? 🤔<br>
+ভুল হলে কমেন্ট করুন!
+</div>
+
+<!-- 🔥 Subscribe Text -->
+<div class="subscribe">
+চ্যানেলটি সাবস্ক্রাইব করুন 🔔
+</div>
+
+<div class="timer" id="t">10</div>
+
+<script>
+let time = 10;
+
+function generate(){
+  let a = Math.floor(Math.random()*10)+1;
+  let b = Math.floor(Math.random()*10)+1;
+
+  let fakeAnswer = (Math.random() > 0.5) ? (a + b + 2) : (a - b - 1);
+
+  let ops = ["+","-"];
+  let op = ops[Math.floor(Math.random()*2)];
+
+  document.getElementById("q").innerText = `${a} ${op} ${b} = ?`;
+  document.getElementById("a").innerText = fakeAnswer;
+
+  time = 10;
+}
+
+setInterval(()=>{
+  time--;
+  document.getElementById("t").innerText = time;
+
+  if(time === 0){
+    generate();
+  }
+},1000);
+
+generate();
+</script>
+
+</body>
+</html>

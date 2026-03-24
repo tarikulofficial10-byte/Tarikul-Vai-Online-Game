@@ -6,12 +6,6 @@
 
 <title>95% Fail Game</title>
 
-<!-- PWA Support -->
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#000000">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 
@@ -78,18 +72,24 @@ body{
   margin-top:10px;
 }
 
+/* Bottom section */
+.bottom{
+  padding:10px;
+}
+
+/* Subscribe */
 .subscribe{
   font-size:5vw;
   color:#ffea00;
   font-weight:bold;
-  padding:10px;
-  background:rgba(0,0,0,0.5);
-  border-radius:10px;
-  animation:blink 1s infinite;
+  margin-bottom:5px;
 }
 
-@keyframes blink{
-  50%{opacity:0.4;}
+/* Instruction */
+.install{
+  font-size:4vw;
+  color:#ffffff;
+  opacity:0.9;
 }
 </style>
 </head>
@@ -115,8 +115,10 @@ body{
 <div class="timer" id="t">10</div>
 </div>
 
-<div class="subscribe">
-চ্যানেলটি সাবস্ক্রাইব করুন 🔔
+<!-- 🔥 Bottom Section -->
+<div class="bottom">
+  <div class="subscribe">চ্যানেলটি সাবস্ক্রাইব করুন 🔔</div>
+  <div class="install">📲 ফুল স্ক্রিনে খেলতে Home Screen এ Add করুন</div>
 </div>
 
 </div>
@@ -157,4 +159,4 @@ window.onload = () => {
 </script>
 
 </body>
-  </html>
+</html>

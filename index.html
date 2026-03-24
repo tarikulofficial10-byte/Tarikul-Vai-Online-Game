@@ -2,86 +2,134 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>95% Fail Game</title>
 
 <style>
-body {
+* {
   margin: 0;
-  font-family: Arial;
-  text-align: center;
-  background: linear-gradient(45deg,#ff0057,#3b00ff);
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, #ff0057, #3b00ff);
   color: #fff;
 }
 
+/* Main container */
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Top Title */
 .title {
-  font-size: 30px;
+  font-size: 24px;
   background: #000;
-  padding: 12px;
+  padding: 10px;
   color: #00ffcc;
   font-weight: bold;
+  border-radius: 10px;
 }
 
+/* Middle Content */
+.middle {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Question */
 .question {
-  font-size: 70px;
-  margin-top: 30px;
+  font-size: 12vw;
 }
 
+/* Answer */
 .answer {
-  font-size: 80px;
+  font-size: 14vw;
   color: yellow;
 }
 
+/* Text */
 .text {
-  font-size: 26px;
+  font-size: 5vw;
   margin-top: 10px;
 }
 
+/* Timer */
+.timer {
+  font-size: 8vw;
+  background: white;
+  color: black;
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* Bottom Subscribe */
 .subscribe {
-  font-size: 24px;
-  margin-top: 15px;
+  font-size: 5vw;
   color: #ffea00;
   font-weight: bold;
+  padding: 10px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 10px;
   animation: blink 1s infinite;
 }
 
 @keyframes blink {
   50% { opacity: 0.4; }
 }
-
-.timer {
-  font-size: 40px;
-  background: white;
-  color: black;
-  display: inline-block;
-  padding: 8px 20px;
-  border-radius: 10px;
-  margin-top: 20px;
-}
 </style>
 </head>
 
 <body>
 
-<div class="title">
-৯৫% মানুষ ভুল করে 😱<br>
-তুমি কি পারবে সঠিক উত্তর দিতে? 🤯
+<div class="container">
+
+  <!-- Top -->
+  <div class="title">
+    ৯৫% মানুষ ভুল করে 😱<br>
+    তুমি কি পারবে সঠিক উত্তর দিতে? 🤯
+  </div>
+
+  <!-- Middle -->
+  <div class="middle">
+    <div class="question" id="q">Loading...</div>
+    <div class="answer" id="a"></div>
+
+    <div class="text">
+      এটা কি ঠিক? 🤔<br>
+      ভুল হলে কমেন্ট করুন!
+    </div>
+
+    <div class="timer" id="t">10</div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="subscribe">
+    চ্যানেলটি সাবস্ক্রাইব করুন 🔔
+  </div>
+
 </div>
-
-<div class="question" id="q">Loading...</div>
-<div class="answer" id="a"></div>
-
-<div class="text">
-এটা কি ঠিক? 🤔<br>
-ভুল হলে কমেন্ট করুন!
-</div>
-
-<!-- 🔥 Subscribe Text -->
-<div class="subscribe">
-চ্যানেলটি সাবস্ক্রাইব করুন 🔔
-</div>
-
-<div class="timer" id="t">10</div>
 
 <script>
 let time = 10;
@@ -90,10 +138,11 @@ function generate(){
   let a = Math.floor(Math.random()*10)+1;
   let b = Math.floor(Math.random()*10)+1;
 
-  let fakeAnswer = (Math.random() > 0.5) ? (a + b + 2) : (a - b - 1);
-
   let ops = ["+","-"];
   let op = ops[Math.floor(Math.random()*2)];
+
+  // Wrong answer (viral)
+  let fakeAnswer = (Math.random() > 0.5) ? (a + b + 2) : (a - b - 1);
 
   document.getElementById("q").innerText = `${a} ${op} ${b} = ?`;
   document.getElementById("a").innerText = fakeAnswer;
@@ -101,6 +150,7 @@ function generate(){
   time = 10;
 }
 
+// Timer
 setInterval(()=>{
   time--;
   document.getElementById("t").innerText = time;
@@ -110,6 +160,7 @@ setInterval(()=>{
   }
 },1000);
 
+// Start
 generate();
 </script>
 

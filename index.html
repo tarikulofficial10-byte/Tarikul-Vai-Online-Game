@@ -16,6 +16,35 @@ html,body{
   font-family: Arial;
 }
 
+/* 🔥 Splash Screen */
+#splash{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background: linear-gradient(45deg,#000,#333);
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.logo{
+  font-size:40px;
+  margin-bottom:20px;
+}
+
+.loading{
+  font-size:20px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink{
+  50%{opacity:0.3;}
+}
+
+/* Main Game */
 body{
   display:flex;
   justify-content:center;
@@ -72,23 +101,18 @@ body{
   margin-top:10px;
 }
 
-/* Bottom section */
 .bottom{
   padding:10px;
 }
 
-/* Subscribe */
 .subscribe{
   font-size:5vw;
   color:#ffea00;
   font-weight:bold;
-  margin-bottom:5px;
 }
 
-/* Instruction */
 .install{
   font-size:4vw;
-  color:#ffffff;
   opacity:0.9;
 }
 </style>
@@ -96,6 +120,13 @@ body{
 
 <body>
 
+<!-- 🔥 Splash Screen -->
+<div id="splash">
+  <div class="logo">🎮 Math Game</div>
+  <div class="loading">Loading...</div>
+</div>
+
+<!-- Game -->
 <div class="container">
 
 <div class="title">
@@ -115,7 +146,6 @@ body{
 <div class="timer" id="t">10</div>
 </div>
 
-<!-- 🔥 Bottom Section -->
 <div class="bottom">
   <div class="subscribe">চ্যানেলটি সাবস্ক্রাইব করুন 🔔</div>
   <div class="install">📲 ফুল স্ক্রিনে খেলতে Home Screen এ Add করুন</div>
@@ -125,6 +155,11 @@ body{
 
 <script>
 let time=10;
+
+// Splash hide after 2 sec
+setTimeout(()=>{
+  document.getElementById("splash").style.display="none";
+},2000);
 
 function generate(){
 let a=Math.floor(Math.random()*10)+1;
